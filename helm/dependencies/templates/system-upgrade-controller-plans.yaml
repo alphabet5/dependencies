@@ -1,4 +1,4 @@
-{{- if .Values.system-upgrade-controller.k3s.enabled }}
+{{- if and (index .Values "system-upgrade-controller" "enabled") (index .Values "system-upgrade-controller" "k3s" "enabled") }}
 ---
 # K3s upgrade plan
 apiVersion: upgrade.cattle.io/v1
@@ -10,7 +10,7 @@ metadata:
     k3s-upgrade: server
 spec:
   concurrency: 1 # Batch size (roughly maps to maximum number of unschedulable nodes)
-  version: {{ .Values.system-upgrade-controller.k3s.version }}
+  version: {{ index .Values "system-upgrade-controller" "k3s" "version" }}
   # channel: https://update.k3s.io/v1-release/channels/stable
   nodeSelector:
     matchExpressions:
@@ -22,8 +22,8 @@ spec:
   cordon: true
   upgrade:
     image: rancher/k3s-upgrade
-
-{{- if .Values.system-upgrade-controller.ubuntu.enabled }}
+{{- end }}
+{{- if and (index .Values "system-upgrade-controller" "enabled") (index .Values "system-upgrade-controller" "ubuntu" "enabled") }}
 ---
 apiVersion: v1
 kind: Secret

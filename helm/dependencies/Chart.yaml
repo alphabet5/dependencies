@@ -1,11 +1,11 @@
 apiVersion: v2
-name: k8s-dependencies
-version: "0.0.1-alpha.1"
+name: dependencies
+version: "0.0.22"
 description: Helm chart for common k8s dependencies.
 type: application
-home: https://github.com/cybertrol-engineering/k8s-dependencies
+home: https://github.com/cybertrol-engineering/dependencies
 sources:
-  - https://github.com/cybertrol-engineering/k8s-dependencies
+  - https://github.com/cybertrol-engineering/dependencies
 maintainers:
   - name: alphabet5
     url: https://github.com/alphabet5
@@ -14,26 +14,27 @@ maintainers:
 deprecated: false
 dependencies:
 - name: cert-manager
-  version: "1.9.1"
+  version: "~1.9.1"
   repository: "https://charts.jetstack.io"
   condition: cert-manager.enabled
 - name: cilium
-  version: "1.12.0"
+  version: "~1.12.0"
   repository: "https://helm.cilium.io"
   condition: cilium.enabled
 - name: coredns
-  version: "1.19.4"
+  version: "~1.19.4"
   repository: "https://coredns.github.io/helm"
   condition: coredns.enabled
 - name: ingress-nginx
-  version: "4.2.0"
+  version: "~4.2.1"
   repository: "https://kubernetes.github.io/ingress-nginx"
   condition: ingress-nginx.enabled
 - name: longhorn
-  version: "1.3.0"
+  version: "~1.3.0"
   repository: "https://charts.longhorn.io"
+  condition: longhorn.enabled
 - name: sealed-secrets
-  version: "2.6.0"
+  version: "~2.6.0"
   repository: "https://bitnami-labs.github.io/sealed-secrets"
   condition: sealed-secrets.enabled
 
